@@ -13,7 +13,8 @@ import (
 )
 
 type Config struct {
-	URI string
+	MONGO_URL    string
+	MONGO_DBNAME string
 }
 
 func ConnectDB(conf Config) *mongo.Database {
@@ -22,8 +23,12 @@ func ConnectDB(conf Config) *mongo.Database {
 		log.Fatal("Error loading .env file")
 	}
 
-	uri := os.Getenv("MONGO_URL")
-	client, er := mongo.NewClient(options.Client().ApplyURI(uri))
+	dburl := os.Getenv("MONGO_URL")
+	dbname := os.Getenv("MONGO_DBNAME")
+	dbport := os.Getenv("MONGO_PORT")
+	url := "mongodb://" + dburl + ":" + dbport
+
+	client, er := mongo.NewClient(options.Client().ApplyURI(url))
 	if er != nil {
 		log.Fatal(er)
 	}
@@ -37,6 +42,6 @@ func ConnectDB(conf Config) *mongo.Database {
 	}
 
 	fmt.Println("Connected to MongoDB")
-	cli := client.Database("clean_arch")
+	cli := client.Database(dbname)
 	return cli
 }

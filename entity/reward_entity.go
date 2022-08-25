@@ -11,14 +11,14 @@ type RewardCardCoupon struct {
 	URL_Logo       string             `json:"url_logo" bson:"url_logo"`
 	Title          string             `json:"title" bson:"title"`
 	Card_No        string             `json:"card_no" bson:"card_no"`
-	Start_At       *time.Time         `json:"start_at" bson:"start_at"`
-	End_At         *time.Time         `json:"end_at" bson:"end_at"`
+	Start_At       string             `json:"start_at" bson:"start_at"`
+	End_At         string             `json:"end_at" bson:"end_at"`
 	Status         string             `json:"status" bson:"status"`
 	Card_Claimed   int                `json:"card_claimed" bson:"card_claimed"`
 	Points_Claimed int                `json:"points_claimed" bson:"points_claimed"`
 	TnC            string             `json:"tnc" bson:"tnc"`
-	Points_Detail  Points_Detail
-	Coupon_Detail  Coupon_Detail
+	Points_Detail  Points_Detail      `json:"points_detail" bson:"points_detail"`
+	Coupon_Detail  Coupon_Detail      `json:"coupon_detail" bson:"coupon_detail"`
 
 	Created_At *time.Time `json:"created_at" bson:"created_at"`
 }
@@ -35,7 +35,7 @@ type Coupon_Detail struct {
 	Item            string             `json:"item" bson:"item"`
 	Status          string             `json:"status" bson:"status"`
 	Total_Points    int                `json:"total_points" bson:"total_points"`
-	Expired_At      *time.Time         `json:"expired_at" bson:"expired_at"`
+	Expired_At      string             `json:"expired_at" bson:"expired_at"`
 	Coupon_Claimed  int                `json:"coupon_claimed" bson:"coupon_claimed"`
 	Coupon_Redeemed int                `json:"coupon_redeemed" bson:"coupon_redeemed"`
 	TnC             string             `json:"tnc" bson:"tnc"`
