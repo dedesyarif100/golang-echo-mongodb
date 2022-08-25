@@ -14,6 +14,7 @@ func Server() *echo.Echo {
 
 	// kumpulan routes
 	routers.RewardCardCouponRoutes(app, conf)
+	routers.MerchantRoutes(app, conf)
 
 	return app
 }
