@@ -1,10 +1,10 @@
 package admin
 
 import (
-	"net/http"
 	"api-merchant-backend/entity"
-	"github.com/labstack/echo/v4"
 	"api-merchant-backend/service/admin"
+	"net/http"
+	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -13,13 +13,16 @@ type Controller struct {
 }
 
 func (controller *Controller) InsertMerchant(context echo.Context) error {
-	merchant := entity.Merchant{
-		ID: primitive.NewObjectID(),
-		Information: entity.Information{},
-	}
+	merchant := entity.MerchantCreate{}
 
 	err := context.Bind(&merchant)
 	if err != nil {
+		return context.JSON(http.StatusBadRequest, map[string]any{
+			"message": err.Error(),
+		})
+	}
+
+	if err := context.Validate(merchant); err != nil {
 		return context.JSON(http.StatusBadRequest, map[string]any{
 			"message": err.Error(),
 		})
@@ -33,8 +36,8 @@ func (controller *Controller) InsertMerchant(context echo.Context) error {
 	}
 
 	return context.JSON(http.StatusCreated, map[string]any{
-		"messages": "successfully created reward card coupon",
-		"data":     merchant,
+		"messages"	: "successfully created reward card coupon",
+		"data"		:     merchant,
 	})
 }
 
@@ -75,9 +78,8 @@ func (controller *Controller) GetMerchantByID(context echo.Context) error {
 func (controller *Controller) UpdateMerchant(context echo.Context) error {
 	id := context.Param("id")
 	objID, _ := primitive.ObjectIDFromHex(id)
-	data := entity.Merchant{
-		ID: objID,
-	}
+	data := entity.MerchantUpdate{}
+
 	err := context.Bind(&data)
 	if err != nil {
 		return context.JSON(http.StatusBadRequest, map[string]any{
@@ -96,7 +98,7 @@ func (controller *Controller) UpdateMerchant(context echo.Context) error {
 	return context.JSON(http.StatusOK, map[string]any{
 		"code"		: http.StatusOK,
 		"message"	: "success update merchant",
-		"result"	: result.ID,
+		"result"	: result,
 	})
 }
 

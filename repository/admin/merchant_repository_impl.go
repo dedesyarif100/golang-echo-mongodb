@@ -3,9 +3,8 @@ package admin
 import (
 	"api-merchant-backend/entity"
 	"context"
-	"fmt"
+	"errors"
 	"time"
-
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -21,11 +20,10 @@ func NewMerchantRepository(DB *mongo.Database) MerchantRepository {
 	}
 }
 
-func (repo *Repository) InsertMerchant(merchant entity.Merchant) (entity.Merchant, error) {
+func (repo *Repository) InsertMerchant(merchant entity.MerchantCreate) (entity.MerchantCreate, error) {
 	context, cancel := context.WithTimeout(context.Background(), 10 * time.Second)
 	merchant.Is_Registered = false
-	// fmt.Println("CEK VALUE :", merchant.Is_Registered)
-	// return merchant, nil
+	merchant.Created_At = time.Now()
 	defer cancel()
 	_, err := repo.DB.InsertOne(context, merchant)
 	if err != nil {
@@ -34,7 +32,7 @@ func (repo *Repository) InsertMerchant(merchant entity.Merchant) (entity.Merchan
 	return merchant, nil
 }
 
-func (repo *Repository) GetAllMerchant() ([]entity.Merchant, error) {
+func (repo *Repository) GetAllMerchant() ([]entity.MerchantCreate, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10 * time.Second)
 	defer cancel()
 
@@ -42,7 +40,7 @@ func (repo *Repository) GetAllMerchant() ([]entity.Merchant, error) {
 	if err != nil {
 		return nil, err
 	}
-	var results []entity.Merchant
+	var results []entity.MerchantCreate
 	err = cursor.All(context.TODO(), &results)
 	if err != nil {
 		return nil, err
@@ -50,16 +48,15 @@ func (repo *Repository) GetAllMerchant() ([]entity.Merchant, error) {
 	return results, nil
 }
 
-func (repo *Repository) GetMerchantByID(id primitive.ObjectID) (*entity.Merchant, error) {
+func (repo *Repository) GetMerchantByID(id primitive.ObjectID) (*entity.MerchantCreate, error) {
 	context, cancel := context.WithTimeout(context.Background(), 10 * time.Second)
 	defer cancel()
-	fmt.Println("CEK VALUE :", id);
 
 	filter := bson.M{
-		"id": id,
+		"_id": id,
 	}
 
-	var result entity.Merchant
+	var result entity.MerchantCreate
 	err := repo.DB.FindOne(context, filter).Decode(&result)
 
 	if err != nil {
@@ -68,21 +65,22 @@ func (repo *Repository) GetMerchantByID(id primitive.ObjectID) (*entity.Merchant
 	return &result, err
 }
 
-func (repo *Repository) UpdateMerchant(id primitive.ObjectID, data *entity.Merchant) (*entity.Merchant, error) {
+func (repo *Repository) UpdateMerchant(id primitive.ObjectID, merchant *entity.MerchantUpdate) (*entity.MerchantUpdate, error) {
 	context, cancel := context.WithTimeout(context.Background(), 10 * time.Second)
+	merchant.Updated_At = time.Now()
 	defer cancel()
 
 	filter := bson.M{
-		"id": id,
+		"_id": id,
 	}
 	update := bson.M{
-		"$set": data,
+		"$set": merchant,
 	}
 	_, err := repo.DB.UpdateOne(context, filter, update)
 	if err != nil {
 		return nil, err
 	}
-	return data, nil
+	return merchant, nil
 }
 
 func (repo *Repository) DeleteMerchant(id primitive.ObjectID) error {
@@ -90,7 +88,7 @@ func (repo *Repository) DeleteMerchant(id primitive.ObjectID) error {
 	defer cancel()
 
 	filter := bson.M{
-		"id": id,
+		"_id": id,
 	}
 
 	_, err := repo.DB.DeleteOne(context, filter)
@@ -98,4 +96,13 @@ func (repo *Repository) DeleteMerchant(id primitive.ObjectID) error {
 		return err
 	}
 	return nil
+}
+
+func (repo *Repository) FindMerchantByEmail(email string) (*entity.MerchantCreate, error) {
+	merchant := entity.MerchantCreate{}
+	err := repo.DB.FindOne(context.Background(), bson.D{{"email", email}}).Decode(&merchant)
+	if err != nil {
+		return nil, errors.New("wrong username")
+	}
+	return &merchant, nil
 }
