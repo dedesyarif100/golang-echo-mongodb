@@ -6,20 +6,17 @@ import (
 	"api-merchant-backend/repository/auth"
 	"api-merchant-backend/utils"
 	"errors"
-	// "github.com/go-playground/validator"
 )
 
 type Service struct {
 	repository auth.AdminRepository
 	config     config.Config
-	// validate	*validator.Validate
 }
 
 func NewAdminService(repository auth.AdminRepository, config config.Config) AdminService {
 	return &Service{
 		repository: repository,
 		config:     config,
-		// validate: validator.new(),
 	}
 }
 

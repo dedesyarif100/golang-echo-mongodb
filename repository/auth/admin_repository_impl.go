@@ -84,7 +84,7 @@ func (repo *Repository) FindAdminByEmail(email string) (*entity.Admin, error) {
 	admin := entity.Admin{}
 	err := repo.DB.FindOne(context.Background(), bson.D{{"email", email}}).Decode(&admin)
 	if err != nil {
-		return nil, errors.New("wrong username")
+		return nil, errors.New("Admin Not Found")
 	}
 	return &admin, nil
 }

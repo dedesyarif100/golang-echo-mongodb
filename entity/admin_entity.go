@@ -9,8 +9,8 @@ import (
 type AuthRegister struct {
 	ID 				primitive.ObjectID 	`json:"id" bson:"_id,omitempty"`
 	Username		string				`json:"username" bson:"username,omitempty" validate:"required"`
-	Email			string				`json:"email" bson:"email,omitempty" validate:"required"`
-	Password		string				`json:"password" bson:"password,omitempty" validate:"required"`
+	Email			string				`json:"email" bson:"email,omitempty" validate:"required,email"`
+	Password		string				`json:"password" bson:"password,omitempty" validate:"required,min=8"`
 	Created_At		time.Time			`json:"created_at" bson:"created_at,omitempty"`
 	Updated_At		time.Time			`json:"updated_at" bson:"updated_at,omitempty"`
 	Deleted_At		*time.Time			`json:"deleted_at" bson:"deleted_at,omitempty"`
@@ -24,8 +24,8 @@ type AuthLogin struct {
 type Admin struct {
 	ID 				primitive.ObjectID 	`json:"id" bson:"_id,omitempty"`
 	Username		string				`json:"username" bson:"username,omitempty" validate:"required"`
-	Email			string				`json:"email" bson:"email,omitempty" validate:"required"`
-	Password		string				`json:"password" bson:"password,omitempty" validate:"required"`
+	Email			string				`json:"email" bson:"email,omitempty" validate:"required,email"`
+	Password		string				`json:"password" bson:"password,omitempty" validate:"required,min=8"`
 	Created_At		time.Time			`json:"created_at" bson:"created_at,omitempty"`
 	Updated_At		time.Time			`json:"updated_at" bson:"updated_at,omitempty"`
 	Deleted_At		*time.Time			`json:"deleted_at" bson:"deleted_at,omitempty"`
