@@ -6,10 +6,10 @@ import (
 )
 
 type MerchantRepository interface {
-	InsertMerchant(merchant entity.MerchantCreate) (entity.MerchantCreate, error)
+	InsertMerchant(merchant entity.MerchantCreate) error
 	GetAllMerchant() ([]entity.MerchantCreate, error)
 	GetMerchantByID(ID primitive.ObjectID) (*entity.MerchantCreate, error)
-	UpdateMerchant(ID primitive.ObjectID, merchant *entity.MerchantUpdate) (*entity.MerchantUpdate, error)
+	UpdateMerchant(OldMerchant *entity.MerchantCreate, NewMerchant *entity.MerchantUpdate) (*entity.MerchantUpdate, error)
 	DeleteMerchant(ID primitive.ObjectID) error
 	FindMerchantByEmail(email string) (*entity.MerchantCreate, error)
 }

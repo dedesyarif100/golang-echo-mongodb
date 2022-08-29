@@ -20,16 +20,17 @@ func NewMerchantRepository(DB *mongo.Database) MerchantRepository {
 	}
 }
 
-func (repo *Repository) InsertMerchant(merchant entity.MerchantCreate) (entity.MerchantCreate, error) {
+func (repo *Repository) InsertMerchant(merchant entity.MerchantCreate) error {
 	context, cancel := context.WithTimeout(context.Background(), 10 * time.Second)
 	merchant.Is_Registered = false
 	merchant.Created_At = time.Now()
+
 	defer cancel()
 	_, err := repo.DB.InsertOne(context, merchant)
 	if err != nil {
-		return merchant, err
+		return err
 	}
-	return merchant, nil
+	return nil
 }
 
 func (repo *Repository) GetAllMerchant() ([]entity.MerchantCreate, error) {
@@ -65,22 +66,23 @@ func (repo *Repository) GetMerchantByID(id primitive.ObjectID) (*entity.Merchant
 	return &result, err
 }
 
-func (repo *Repository) UpdateMerchant(id primitive.ObjectID, merchant *entity.MerchantUpdate) (*entity.MerchantUpdate, error) {
+func (repo *Repository) UpdateMerchant(OldMerchant *entity.MerchantCreate, NewMerchant *entity.MerchantUpdate) (*entity.MerchantUpdate, error) {
 	context, cancel := context.WithTimeout(context.Background(), 10 * time.Second)
-	merchant.Updated_At = time.Now()
 	defer cancel()
 
+	NewMerchant.Email = OldMerchant.Email
+	NewMerchant.Updated_At = time.Now()
 	filter := bson.M{
-		"_id": id,
+		"_id": OldMerchant.ID,
 	}
 	update := bson.M{
-		"$set": merchant,
+		"$set": NewMerchant,
 	}
 	_, err := repo.DB.UpdateOne(context, filter, update)
 	if err != nil {
 		return nil, err
 	}
-	return merchant, nil
+	return NewMerchant, nil
 }
 
 func (repo *Repository) DeleteMerchant(id primitive.ObjectID) error {

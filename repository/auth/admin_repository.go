@@ -5,7 +5,7 @@ import (
 )
 
 type AdminRepository interface {
-	Register(admin *entity.AuthRegister) (*entity.Admin, error)
+	Register(admin *entity.AuthRegister) error
 	FindAdminByEmail(email string) (*entity.Admin, error)
-	CreateToken(admin *entity.Admin) (*string, error)
+	// CreateToken(admin *entity.Admin) (*string, error)
 }

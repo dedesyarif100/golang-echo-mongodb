@@ -25,19 +25,19 @@ func (controller *Controller) InsertMerchant(context echo.Context) error {
 	}
 
 	if err := context.Validate(merchant); err != nil {
-		return handleError(err, context)
+		return handleErrorValidator(err, context)
 	}
 
-	merchant, er := controller.Service.InsertMerchant(merchant)
-	if er != nil {
+	err = controller.Service.InsertMerchant(merchant)
+	if err != nil {
 		return context.JSON(http.StatusInternalServerError, map[string]any{
-			"messages": er.Error(),
+			"message": err.Error(),
 		})
 	}
 
 	return context.JSON(http.StatusCreated, map[string]any{
-		"messages"	: "successfully created reward card coupon",
-		"data"		:     merchant,
+		"code"		: http.StatusCreated,
+		"message"	: "successfully created merchant",
 	})
 }
 
@@ -47,7 +47,7 @@ func (controller *Controller) GetAllMerchant(context echo.Context) error {
 	if err != nil {
 		return context.JSON(http.StatusBadRequest, map[string]any{
 			"code"		: http.StatusBadRequest,
-			"messages"	: err.Error(),
+			"message"	: err.Error(),
 		})
 	}
 	return context.JSON(http.StatusOK, map[string]any{
@@ -89,7 +89,7 @@ func (controller *Controller) UpdateMerchant(context echo.Context) error {
 	}
 
 	if err := context.Validate(merchant); err != nil {
-		return handleError(err, context)
+		return handleErrorValidator(err, context)
 	}
 
 	result, err := controller.Service.UpdateMerchant(objID, &merchant)
@@ -112,7 +112,7 @@ func (controller *Controller) DeleteMerchant(context echo.Context) error {
 
 	err := controller.Service.DeleteMerchant(objID)
 	if err != nil {
-		return context.JSON(http.StatusInternalServerError, map[string]any{
+		return context.JSON(http.StatusBadRequest, map[string]any{
 			"error": err.Error(),
 		})
 	}
@@ -121,10 +121,10 @@ func (controller *Controller) DeleteMerchant(context echo.Context) error {
 	})
 }
 
-func handleError(err error, context echo.Context) error {
+func handleErrorValidator(err error, context echo.Context) error {
 	report, ok := err.(*echo.HTTPError)
 	if !ok {
-		report = echo.NewHTTPError(http.StatusInternalServerError, err.Error())
+		report = echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}	
 
 	if castedObject, ok := err.(validator.ValidationErrors); ok {
