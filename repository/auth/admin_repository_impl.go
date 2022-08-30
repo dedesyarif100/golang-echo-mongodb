@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"time"
+
 	"github.com/golang-jwt/jwt/v4"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -84,7 +85,7 @@ func (repo *Repository) FindAdminByEmail(email string) (*entity.Admin, error) {
 	admin := entity.Admin{}
 	err := repo.DB.FindOne(context.Background(), bson.D{{"email", email}}).Decode(&admin)
 	if err != nil {
-		return nil, errors.New("Admin Not Found")
+		return nil, errors.New("wrong Email")
 	}
 	return &admin, nil
 }
