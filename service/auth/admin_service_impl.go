@@ -20,11 +20,13 @@ func NewAdminService(repository auth.AdminRepository, config config.Config) Admi
 	}
 }
 
-func (service *Service) Register(admin *entity.AuthRegister) (*entity.Admin, error) {
+func (service *Service) Register(admin *entity.AuthRegister) error {
 	result, _ := service.repository.FindAdminByEmail(admin.Email)
 	if result != nil {
-		return nil, errors.New("email is exists")
+		return errors.New("email is exists")
 	}
+	hashpw, _ := utils.Hash(admin.Password)
+	admin.Password = string(hashpw)
 	return service.repository.Register(admin)
 }
 
@@ -37,10 +39,11 @@ func (service *Service) Login(admin *entity.AuthLogin) (*entity.ResponseLogin, e
 	if errpw != nil {
 		return nil, errors.New("wrong password")
 	}
-	token, err := service.repository.CreateToken(result)
+	
+	token, _ := utils.GenerateAccessToken(result.ID, service.config.JWT_SECRET, result.Email)
 	response := &entity.ResponseLogin{
 		Admin: *result,
-		Token: *token,
+		Token: token,
 	}
 	return response, nil
 }

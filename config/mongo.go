@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"time"
-
 	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -15,6 +14,7 @@ import (
 type Config struct {
 	MONGO_URL    string
 	MONGO_DBNAME string
+	JWT_SECRET	 string
 }
 
 func ConnectDB(conf Config) *mongo.Database {

@@ -8,6 +8,8 @@ import (
 // MERCHANT CREATE
 type MerchantCreate struct {
 	ID 				primitive.ObjectID	`json:"id" bson:"_id,omitempty"`
+	Name			string				`json:"name" bson:"name,omitempty" validate:"required"`
+	Logo_Url		string				`json:"logo_url" bson:"logo_url,omitempty" validate:"required"`
 	Address			string				`json:"address" bson:"address,omitempty" validate:"required"`
 	Email			string				`json:"email" bson:"email,omitempty" validate:"required,email"`
 	Phone			string				`json:"phone" bson:"phone,omitempty" validate:"required"`
@@ -42,8 +44,10 @@ type Clock struct {
 
 // MERCHANT UPDATE
 type MerchantUpdate struct {
+	Name			string				`json:"name" bson:"name,omitempty" validate:"required"`
+	Logo_Url		string				`json:"logo_url" bson:"logo_url,omitempty" validate:"required"`
 	Address			string				`json:"address" bson:"address,omitempty" validate:"required"`
-	Email			string				`json:"email" bson:"email,omitempty" validate:"required,email"`
+	Email			string				`json:"email" bson:"email,omitempty"`
 	Phone			string				`json:"phone" bson:"phone,omitempty" validate:"required"`
 	Pic_Name		string				`json:"pic_name" bson:"pic_name,omitempty" validate:"required"`
 	Pic_Phone		string				`json:"pic_phone" bson:"pic_phone,omitempty" validate:"required"`

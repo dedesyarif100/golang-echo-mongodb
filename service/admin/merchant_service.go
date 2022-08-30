@@ -7,7 +7,7 @@ import (
 )
 
 type MerchantService interface {
-	InsertMerchant(merchant entity.MerchantCreate) (entity.MerchantCreate, error)
+	InsertMerchant(merchant entity.MerchantCreate) error
 	GetAllMerchant() ([]entity.MerchantCreate, error)
 	GetMerchantByID(ID primitive.ObjectID) (*entity.MerchantCreate, error)
 	UpdateMerchant(ID primitive.ObjectID, merchant *entity.MerchantUpdate) (*entity.MerchantUpdate, error)

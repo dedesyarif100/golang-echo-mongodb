@@ -23,20 +23,19 @@ func (Controller *Controller) Register(context echo.Context) error {
 	}
 
 	if err := context.Validate(admin); err != nil {
-		return handleError(err, context)
+		return handleErrorValidator(err, context)
 	}
 
-	result, er := Controller.Service.Register(&admin)
-	if er != nil {
+	err = Controller.Service.Register(&admin)
+	if err != nil {
 		return context.JSON(http.StatusBadRequest, map[string]interface{}{
-			"code":     400,
-			"messages": er.Error(),
+			"code":     http.StatusBadRequest,
+			"messages": err.Error(),
 		})
 	}
-	return context.JSON(http.StatusOK, map[string]interface{}{
-		"code":     200,
-		"messages": "success register account",
-		"result":   result,
+	return context.JSON(http.StatusCreated, map[string]interface{}{
+		"code"		: http.StatusCreated,
+		"messages"	: "success register admin",
 	})
 }
 
@@ -50,27 +49,27 @@ func (Controller *Controller) Login(context echo.Context) error {
 	}
 
 	if err := context.Validate(admin); err != nil {
-		return handleError(err, context)
+		return handleErrorValidator(err, context)
 	}
 
 	result, er := Controller.Service.Login(&admin)
 	if er != nil {
 		return context.JSON(http.StatusBadRequest, map[string]interface{}{
-			"code":     400,
-			"messages": er.Error(),
+			"code"		: http.StatusBadRequest,
+			"messages"	: er.Error(),
 		})
 	}
 	return context.JSON(http.StatusOK, map[string]interface{}{
-		"code":     200,
-		"messages": "success login account",
-		"result":   result,
+		"code"		: http.StatusOK,
+		"messages"	: "success login admin",
+		"result"	: result,
 	})
 }
 
-func handleError(err error, context echo.Context) error {
+func handleErrorValidator(err error, context echo.Context) error {
 	report, ok := err.(*echo.HTTPError)
 	if !ok {
-		report = echo.NewHTTPError(http.StatusInternalServerError, err.Error())
+		report = echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
 	if castedObject, ok := err.(validator.ValidationErrors); ok {
