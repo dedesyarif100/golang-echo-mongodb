@@ -5,6 +5,7 @@ import (
 	"context"
 	"errors"
 	"time"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -20,7 +21,7 @@ func NewAdminRepository(DB *mongo.Database) AdminRepository {
 }
 
 func (repo *Repository) Register(admin *entity.AuthRegister) error {
-	context, cancel := context.WithTimeout(context.Background(), 10 * time.Second)
+	context, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 
 	admin.Created_At = time.Now()
 	defer cancel()
@@ -36,7 +37,7 @@ func (repo *Repository) FindAdminByEmail(email string) (*entity.Admin, error) {
 	admin := entity.Admin{}
 	err := repo.DB.FindOne(context.Background(), bson.D{{"email", email}}).Decode(&admin)
 	if err != nil {
-		return nil, errors.New("Admin Not Found")
+		return nil, errors.New("wrong email")
 	}
 	return &admin, nil
 }
