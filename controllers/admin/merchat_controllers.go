@@ -133,9 +133,13 @@ func handleErrorValidator(err error, context echo.Context) error {
 				case "required":
 					report.Message = fmt.Sprintf("%s is required", err.Field())
 				case "email":
-					report.Message = fmt.Sprintf("%s is not valid email", err.Field())
+					report.Message = fmt.Sprintf("%s is not valid", err.Field())
 				case "min":
-					report.Message = fmt.Sprintf("%s min password 8 character", err.Field())
+					report.Message = fmt.Sprintf("%s min 8 character", err.Field())
+				case "max":
+					report.Message = fmt.Sprintf("%s max 12 character", err.Field())
+				case "numeric":
+					report.Message = fmt.Sprintf("%s character must is numeric", err.Field())
 			}
 			break
 		}

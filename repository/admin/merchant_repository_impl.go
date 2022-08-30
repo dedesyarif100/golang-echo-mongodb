@@ -70,7 +70,6 @@ func (repo *Repository) UpdateMerchant(OldMerchant *entity.MerchantCreate, NewMe
 	context, cancel := context.WithTimeout(context.Background(), 10 * time.Second)
 	defer cancel()
 
-	NewMerchant.Email = OldMerchant.Email
 	NewMerchant.Updated_At = time.Now()
 	filter := bson.M{
 		"_id": OldMerchant.ID,

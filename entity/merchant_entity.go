@@ -12,13 +12,13 @@ type MerchantCreate struct {
 	Logo_Url		string				`json:"logo_url" bson:"logo_url,omitempty" validate:"required"`
 	Address			string				`json:"address" bson:"address,omitempty" validate:"required"`
 	Email			string				`json:"email" bson:"email,omitempty" validate:"required,email"`
-	Phone			string				`json:"phone" bson:"phone,omitempty" validate:"required"`
+	Phone			string				`json:"phone" bson:"phone,omitempty" validate:"required,numeric"`
 	Pic_Name		string				`json:"pic_name" bson:"pic_name,omitempty" validate:"required"`
-	Pic_Phone		string				`json:"pic_phone" bson:"pic_phone,omitempty" validate:"required"`
-	Pic_Email		string				`json:"pic_email" bson:"pic_email,omitempty" validate:"required"`
+	Pic_Phone		string				`json:"pic_phone" bson:"pic_phone,omitempty" validate:"required,numeric"`
+	Pic_Email		string				`json:"pic_email" bson:"pic_email,omitempty" validate:"required,email"`
 	Information		Information			`json:"information" bson:"information,omitempty" validate:"required"`
 	Service_Option	[]string			`json:"service_option" bson:"service_option,omitempty" validate:"required"`
-	Password		string				`json:"password" bson:"password,omitempty" validate:"required,min=8"`
+	Password		string				`json:"password" bson:"password,omitempty" validate:"required,min=8,max=12"`
 	Is_Registered	bool				`json:"is_registered" bson:"is_registered,omitempty"`
 	Created_At		time.Time			`json:"created_at" bson:"created_at,omitempty"`
 	Updated_At		time.Time			`json:"updated_at" bson:"updated_at,omitempty"`
@@ -47,14 +47,13 @@ type MerchantUpdate struct {
 	Name			string				`json:"name" bson:"name,omitempty" validate:"required"`
 	Logo_Url		string				`json:"logo_url" bson:"logo_url,omitempty" validate:"required"`
 	Address			string				`json:"address" bson:"address,omitempty" validate:"required"`
-	Email			string				`json:"email" bson:"email,omitempty"`
-	Phone			string				`json:"phone" bson:"phone,omitempty" validate:"required"`
+	Phone			string				`json:"phone" bson:"phone,omitempty" validate:"required,numeric"`
 	Pic_Name		string				`json:"pic_name" bson:"pic_name,omitempty" validate:"required"`
-	Pic_Phone		string				`json:"pic_phone" bson:"pic_phone,omitempty" validate:"required"`
-	Pic_Email		string				`json:"pic_email" bson:"pic_email,omitempty" validate:"required"`
+	Pic_Phone		string				`json:"pic_phone" bson:"pic_phone,omitempty" validate:"required,numeric"`
+	Pic_Email		string				`json:"pic_email" bson:"pic_email,omitempty" validate:"required,email"`
 	Information		Information			`json:"information" bson:"information,omitempty" validate:"required"`
 	Service_Option	[]string			`json:"service_option" bson:"service_option,omitempty" validate:"required"`
-	Password		string				`json:"password" bson:"password,omitempty" validate:"required,min=8"`
+	Password		string				`json:"password" bson:"password,omitempty" validate:"required,min=8,max=12"`
 	Is_Registered	bool				`json:"is_registered" bson:"is_registered,omitempty"`
 	Updated_At		time.Time			`json:"updated_at" bson:"updated_at,omitempty"`
 }
