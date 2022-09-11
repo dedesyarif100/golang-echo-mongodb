@@ -33,7 +33,7 @@ func (service *Service) InsertMerchant(merchant entity.MerchantCreate) error {
 }
 
 
-func (service *Service) GetAllMerchant() ([]entity.MerchantResult, int64, error) {
+func (service *Service) GetAllMerchant() ([]entity.MerchantResult, float64, error) {
 	return service.repository.GetAllMerchant()
 }
 

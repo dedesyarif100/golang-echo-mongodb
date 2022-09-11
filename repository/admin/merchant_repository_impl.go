@@ -4,7 +4,6 @@ import (
 	"api-merchant-backend/entity"
 	"context"
 	"errors"
-	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -76,7 +75,7 @@ func (repo *Repository) InsertMerchant(merchant entity.MerchantCreate) error {
 }
 
 
-func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error) {
+func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, float64, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10 * time.Second)
 	defer cancel()
 
@@ -85,25 +84,189 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 	// SPECIFY A QUERY
 	// QUERY CONDITION ( $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $exists ) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// ---------------------------------------------------------------------------------------------
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "name", Value: "admin"}}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
+		
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "name", Value: bson.D{{Key: "$eq", Value: "admin"}}}}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
+
+		
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "name", Value: bson.D{{Key: "$ne", Value: "admin"}}}}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "updated_at", Value: bson.D{{Key: "$exists", Value: true}}}}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
+
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "updated_at", Value: bson.D{{Key: "$exists", Value: false}}}}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "rating", Value: bson.D{{Key: "$eq", Value: 10}}}}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
+		
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "rating", Value: bson.D{{Key: "$ne", Value: 8}}}}
-		
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
+
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "rating", Value: bson.D{{Key: "$gt", Value: 9}}}}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
+
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "rating", Value: bson.D{{Key: "$gte", Value: 9}}}}
-		
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
+
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "rating", Value: bson.D{{Key: "$lt", Value: 8}}}}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
+
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "rating", Value: bson.D{{Key: "$lte", Value: 8}}}}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "rating", Value: bson.D{{Key: "$in", Value: []int{8, 10}}}}}
-		// filter := bson.D{{Key: "rating", Value: bson.D{{Key: "$nin", Value: []int{8, 9}}}}}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
+
+		// ---------------------------------------------------------------------
+		// filter := bson.D{{Key: "rating", Value: bson.D{{Key: "$nin", Value: []int{8, 9}}}}}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
+
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{
 		// 			Key: "$and", Value: bson.A{
 		// 				bson.D{{
@@ -122,7 +285,19 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// 				}},
 		// 			}},
 		// 		}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{
 		// 	{Key: "name", Value: "admin"},
 		// 	{Key: "logo_url", Value: "id"},
@@ -131,7 +306,19 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// 		Value: "jkt",
 		// 	}}},
 		// }
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{
 		// 	{Key: "name", Value: "admin"},
 		// 	{Key: "logo_url", Value: "id"},
@@ -141,32 +328,91 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// 			Key: "rating",
 		// 			Value: bson.D{{
 		// 				Key: "$lt",
-		// 				Value: 9,
+		// 				Value: 12,
 		// 			}},
 		// 		}},
 		// 	},
 		// }}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
+
+		// ---------------------------------------------------------------------
 		// filter := bson.M{"information.category": "food"}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
+
+		// ---------------------------------------------------------------------
 		// filter := bson.M{"information.category": bson.D{{
 		// 	Key: "$in",
 		// 	Value: []any{"food", "drink"},
 		// }}}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 	// ---------------------------------------------------------------------------------------------
 
 
 	// ---------------------------------------------------------------------------------------------
+		// ---------------------------------------------------------------------
 		// filter := bson.D{
-		// 			{Key: "name", Value: "admin"}, 
-		// 			{Key: "rating", Value: bson.D{{Key: "$gt", Value: 12}}},
-		// 		}
+		// 	{Key: "name", Value: "admin"}, 
+		// 	{Key: "rating", Value: bson.D{{Key: "$lte", Value: 12}}},
+		// }
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{
 		// 	{Key: "name", Value: "admin"}, 
 		// 	{Key: "rating", Value: bson.D{{Key: "$gte", Value: 12}}},
 		// }
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{
 		// 	{Key: "name", Value: "admin"}, 
 		// 	{Key: "$and", Value: bson.A{
@@ -186,60 +432,105 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// 		}},
 		// 	}},
 		// }
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
+
+		// ---------------------------------------------------------------------
 		// filter := bson.M{"information.category": bson.D{{
 		// 	Key: "$in",
 		// 	Value: []any{"food", "drink"},
 		// }}}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
+
+		// ---------------------------------------------------------------------
 		// filter := bson.M{"information.category": bson.D{{
 		// 	Key: "$nin",
 		// 	Value: []any{"food", "drink"},
 		// }}}
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 	// ---------------------------------------------------------------------------------------------
 
 
 	// ---------------------------------------------------------------------------------------------
+		// ---------------------------------------------------------------------
 		// filter := bson.D{
 		// 	{Key: "name", Value: "admin"},
 		// 	{Key: "rating", Value: bson.D{{Key: "$lt", Value: 12}}},
 		// }
+		// cursor, _ := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
 
 		// ---------------------------------------------------------------------
-		filter := bson.A{
-			bson.M{
-				"$lookup": bson.M{
-					"from":         "transaction",
-					"localField":   "email",
-					"foreignField": "name",
-					"as":           "trans",
-				},
-			},
-			bson.M{
-				"$unwind": "$trans",
-			},
-			bson.M{
-				"$lookup": bson.M{
-					"from":         "transaction_history",
-					"localField":   "trans.transaction_number",
-					"foreignField": "_id",
-					"as":           "transaction_history",
-				},
-			},
-			bson.M{
-				"$unwind": "$transaction_history",
-			},
-		}
-		fmt.Println(ctx)
-		cursor, _ := repo.DB.Aggregate(context.TODO(), filter)
-		var results []entity.MerchantResult
-		err := cursor.All(context.TODO(), &results)
-		// count, err := repo.DB.CountDocuments(context.TODO(), filter)
-		if err != nil {
-			return nil, 0, err
-		}
-		return results, 0, nil
+		// filter := bson.A{
+		// 	bson.M{
+		// 		"$lookup": bson.M{
+		// 			"from":         "transaction",
+		// 			"localField":   "email",
+		// 			"foreignField": "name",
+		// 			"as":           "trans",
+		// 		},
+		// 	},
+		// 	bson.M{
+		// 		"$unwind": "$trans",
+		// 	},
+		// 	bson.M{
+		// 		"$lookup": bson.M{
+		// 			"from":         "transaction_history",
+		// 			"localField":   "trans.transaction_number",
+		// 			"foreignField": "code",
+		// 			"as":           "transaction_history",
+		// 		},
+		// 	},
+		// 	bson.M{
+		// 		"$unwind": "$transaction_history",
+		// 	},
+		// }
+		// fmt.Println(ctx)
+		// cursor, _ := repo.DB.Aggregate(ctx, filter)
+		// var results []entity.MerchantResult
+		// err := cursor.All(ctx, &results)
+		// // count, err := repo.DB.CountDocuments(ctx, filter)
+		// if err != nil {
+		// 	return nil, 0, err
+		// }
+		// return results, 0, nil
 		// ---------------------------------------------------------------------
 
 
@@ -267,10 +558,11 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// var results []entity.MerchantResult
 		// cursor.All(ctx, &results)
 		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
 		// if err != nil {
-		// 	return nil, count, err
+		// 	return nil, val, err
 		// }
-		// return results, count, nil
+		// return results, val, nil
 		// ---------------------------------------------------------------------
 	// ---------------------------------------------------------------------------------------------
 
@@ -285,10 +577,11 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// var results []entity.MerchantResult
 		// cursor.All(ctx, &results)
 		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
 		// if err != nil {
-		// 	return nil, count, err
+		// 	return nil, val, err
 		// }
-		// return results, count, nil
+		// return results, val, nil
 		// ---------------------------------------------------------------------
 
 
@@ -304,10 +597,11 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// var results []entity.MerchantResult
 		// cursor.All(ctx, &results)
 		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
 		// if err != nil {
-		// 	return nil, count, err
+		// 	return nil, val, err
 		// }
-		// return results, count, nil
+		// return results, val, nil
 		// ---------------------------------------------------------------------
 
 
@@ -323,10 +617,11 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// var results []entity.MerchantResult
 		// cursor.All(ctx, &results)
 		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
 		// if err != nil {
-		// 	return nil, count, err
+		// 	return nil, val, err
 		// }
-		// return results, count, nil
+		// return results, val, nil
 		// ---------------------------------------------------------------------
 	// ---------------------------------------------------------------------------------------------
 
@@ -345,10 +640,11 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// var results []entity.MerchantResult
 		// cursor.All(ctx, &results)
 		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
 		// if err != nil {
-		// 	return nil, count, err
+		// 	return nil, val, err
 		// }
-		// return results, count, nil
+		// return results, val, nil
 		// ---------------------------------------------------------------------
 
 
@@ -364,33 +660,38 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// var results []entity.MerchantResult
 		// cursor.All(ctx, &results)
 		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
 		// if err != nil {
-		// 	return nil, count, err
+		// 	return nil, val, err
 		// }
-		// return results, count, nil
+		// return results, val, nil
 		// ---------------------------------------------------------------------
 	// ---------------------------------------------------------------------------------------------
 
 
 	// QUERY ALL ( $all ) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// ---------------------------------------------------------------------------------------------
-		// val := "sby"
+		// ---------------------------------------------------------------------
+		// city := "sby"
 		// filter := bson.D{
 		// 	{
 		// 		Key: "address", 
 		// 		Value: bson.D{{
 		// 			Key: "$all", 
-		// 			Value: bson.A{val},
+		// 			Value: bson.A{city},
 		// 		}},
 		// 	},
 		// }
 		// cursor, err := repo.DB.Find(ctx, filter)
 		// var results []entity.MerchantResult
 		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
 		// if err != nil {
-		// 	return nil, 0, err
+		// 	return nil, val, err
 		// }
-		// return results, 0, nil
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 	// ---------------------------------------------------------------------------------------------
 
 
@@ -404,13 +705,14 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// 		Value: 10,
 		// 	}},
 		// }}
-		// cursor, err := repo.DB.CountDocuments(ctx, filter)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
 		// var results []entity.MerchantResult
-		// // fmt.Println("CEK VALUE :", cursor)
+		// // fmt.Println("CEK VALUE :", count)
+		// val := float64(count)
 		// if err != nil {
-		// 	return nil, cursor, err
+		// 	return nil, val, err
 		// }
-		// return results, cursor, nil
+		// return results, val, nil
 		// ---------------------------------------------------------------------
 
 
@@ -457,85 +759,111 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// ---------------------------------------------------------------------
 		// count, err := repo.DB.EstimatedDocumentCount(ctx)
 		// // fmt.Println("CEK VALUE :", count)
+		// val := float64(count)
 		// var results []entity.MerchantResult
 		// if err != nil {
-		// 	return nil, count, err
+		// 	return nil, val, err
 		// }
-		// return results, count, nil
+		// return results, val, nil
 		// ---------------------------------------------------------------------
 	// ---------------------------------------------------------------------------------------------
 
 
 	// SET LIMIT ( $limit ) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// ---------------------------------------------------------------------------------------------
+		// ---------------------------------------------------------------------
 		// filter := bson.D{}
 		// opts := options.Find().SetLimit(2)
 		// cursor, err := repo.DB.Find(ctx, filter, opts)
 		// var results []entity.MerchantResult
 		// err = cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
 		// if err != nil {
-		// 	return nil, err
+		// 	return nil, val, err
 		// }
-		// return results, nil
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
 
+		// ---------------------------------------------------------------------
 		// filter := bson.D{}
 		// opts := options.Find().SetLimit(2).SetSkip(3)
 		// cursor, err := repo.DB.Find(ctx, filter, opts)
 		// var results []entity.MerchantResult
-		// err = cursor.All(ctx, &results)
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
 		// if err != nil {
-		// 	return nil, err
+		// 	return nil, val, err
 		// }
-		// return results, nil
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
 
+		// ---------------------------------------------------------------------
 		// filter := bson.D{}
 		// opts := options.Find().SetSkip(2)
 		// cursor, err := repo.DB.Find(ctx, filter, opts)
 		// var results []entity.MerchantResult
-		// err = cursor.All(ctx, &results)
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
 		// if err != nil {
-		// 	return nil, err
+		// 	return nil, val, err
 		// }
-		// return results, nil
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
 
+		// ---------------------------------------------------------------------
 		// filter := bson.D{}
 		// opts := options.Find().SetSort(bson.D{{Key: "rating", Value: -1}}).SetLimit(1).SetSkip(1)
 		// cursor, err := repo.DB.Find(ctx, filter, opts)
 		// var results []entity.MerchantResult
-		// err = cursor.All(ctx, &results)
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
 		// if err != nil {
-		// 	return nil, err
+		// 	return nil, val, err
 		// }
-		// return results, nil
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
 
+		// ---------------------------------------------------------------------
 		// filter := bson.D{}
 		// opts := options.Find().SetSort(bson.D{{Key: "rating", Value: -1}}).SetLimit(1).SetSkip(2)
 		// cursor, err := repo.DB.Find(ctx, filter, opts)
 		// var results []entity.MerchantResult
 		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
 		// if err != nil {
-		// 	return nil, err
+		// 	return nil, val, err
 		// }
-		// return results, nil
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
 
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "$limit", Value: 5}}
 		// cursor, err := repo.DB.Aggregate(ctx, mongo.Pipeline{filter})
 		// var results []entity.MerchantResult
 		// cursor.All(ctx, &results)
+		// count, err := repo.DB.EstimatedDocumentCount(ctx)
+		// val := float64(count)
 		// if err != nil {
-		// 	return nil, err
+		// 	return nil, val, err
 		// }
-		// return results, nil
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 	// ---------------------------------------------------------------------------------------------
 
 
 	// RETRIEVE DATA >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// ---------------------------------------------------------------------------------------------
+		// ---------------------------------------------------------------------
 		// var results []entity.MerchantResult
 		// filter := bson.D{{
 		// 	Key: "$and", 
@@ -568,26 +896,46 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// 	{Key: "rating", Value: true},
 		// 	{Key: "name", Value: true}, 
 		// 	{Key: "email", Value: true}, 
+		// 	{Key: "pic_email", Value: true}, 
 		// }
 		// opts := options.Find().SetProjection(projection)
 		// cursor, _ := repo.DB.Find(ctx, filter, opts)
-		// err := cursor.All(context.TODO(), &results)
+		// cursor.All(context.TODO(), &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
 
+		// ---------------------------------------------------------------------
 		// filter := bson.D{}
 		// sort := bson.D{{Key: "rating", Value: -1}}
 		// projection := bson.D{
-		// 	{Key: "name", Value: true}, 
-		// 	{Key: "email", Value: true},
 		// 	{Key: "rating", Value: true}, 
+		// 	{Key: "name", Value: true}, 
+		// 	{Key: "email", Value: true}, 
+		// 	{Key: "pic_email", Value: true}, 
 		// }
 		// opts := options.FindOne().SetSort(sort).SetProjection(projection)
 		// var result bson.D
-		// err := repo.DB.FindOne(ctx, filter, opts).Decode(&result)
-		// fmt.Println(result)
-		// return nil, nil
+		// var results []entity.MerchantResult
+		// var data entity.MerchantResult
+		// repo.DB.FindOne(ctx, filter, opts).Decode(&result)
+		// data.ID = result[0].Value.(primitive.ObjectID)
+		// // fmt.Println(result)
+		// data.Rating = float64(result[1].Value.(int32))
+		// data.Name = result[2].Value.(string)
+		// data.Email = result[3].Value.(string)
+		// data.Pic_Email = result[4].Value.(string)
+		// results = append(results, data)
+		// return results, 0, nil
+		// ---------------------------------------------------------------------
 
 
+		// ---------------------------------------------------------------------
 		// groupStage := bson.D{
 		// 	{Key: "$group", Value: bson.D{
 		// 		{Key: "_id", Value: "$type"},
@@ -599,15 +947,22 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// cursor, err := repo.DB.Aggregate(ctx, mongo.Pipeline{groupStage})
 		// var result []bson.M
 		// cursor.All(ctx, &result)
-		// for _, element := range result {
-		// 	for key, val := range element {
-		// 		fmt.Println(key)
-		// 		fmt.Println(val)
-		// 	}
-		// 	// fmt.Println(element["_id"])
-		// 	// fmt.Println(element["rata-rata"])
+		// // for _, element := range result {
+		// // 	for key, val := range element {
+		// // 		fmt.Println(key)
+		// // 		fmt.Println(val)
+		// // 	}
+		// // 	// fmt.Println(element["_id"])
+		// // 	// fmt.Println(element["rata-rata"])
+		// // }
+		// // fmt.Println(result[0]["rata-rata"])
+		// var results []entity.MerchantResult
+		// val := result[0]["rata-rata"].(float64)
+		// if err != nil {
+		// 	return nil, val, err
 		// }
-
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 	// ---------------------------------------------------------------------------------------------
 
 
@@ -626,19 +981,85 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 
 	// SORT RESULTS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// ---------------------------------------------------------------------------------------------
-		
+		// ---------------------------------------------------------------------
+
+		// ---------------------------------------------------------------------
 	// ---------------------------------------------------------------------------------------------
 
 
 	// SKIP RETURNED RESULTS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// ---------------------------------------------------------------------------------------------
+		// ---------------------------------------------------------------------
+		// filter := bson.D{}
+		// opts := options.Find().SetSort(bson.D{{Key: "rating", Value: 1}}).SetSkip(2)
+		// cursor, err := repo.DB.Find(ctx, filter, opts)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// if err != nil {
+		// 	return nil, float64(len(results)), err
+		// }
+		// return results, float64(len(results)), nil
+		// ---------------------------------------------------------------------
 
+
+		// ---------------------------------------------------------------------
+		sortStage := bson.D{{Key: "$sort", Value: bson.D{{Key: "rating", Value: -1}}}}
+		skipStage := bson.D{{Key: "$skip", Value: 18}}
+		cursor, err := repo.DB.Aggregate(ctx, mongo.Pipeline{sortStage, skipStage})
+		var results []entity.MerchantResult
+		cursor.All(ctx, &results)
+		if err != nil {
+			return nil, float64(len(results)), err
+		}
+		return results, float64(len(results)), nil
+		// ---------------------------------------------------------------------
 	// ---------------------------------------------------------------------------------------------
 
 
 	// LIMIT THE NUMBER OF RETURNED RESULTS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// ---------------------------------------------------------------------------------------------
+		// ---------------------------------------------------------------------
+		// filter := bson.D{}
+		// opts := options.Find().SetLimit(2)
+		// cursor, err := repo.DB.Find(ctx, filter, opts)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// if err != nil {
+		// 	return nil, float64(len(results)), err
+		// }
+		// return results, float64(len(results)), nil
+		// ---------------------------------------------------------------------
 
+
+		// ---------------------------------------------------------------------
+		// filter := bson.D{}
+		// opts := options.Find().SetSort(bson.D{{Key: "rating", Value: -1}}).SetLimit(2).SetSkip(1)
+		// // opts := options.Find().SetSort(bson.D{{"rating", -1}}).SetSkip(1).SetLimit(2)
+		// // opts := options.Find().SetLimit(2).SetSort(bson.D{{"rating", -1}}).SetSkip(1)
+		// // opts := options.Find().SetLimit(2).SetSkip(1).SetSort(bson.D{{"rating", -1}})
+		// // opts := options.Find().SetSkip(1).SetSort(bson.D{{"rating", -1}}).SetLimit(2)
+		// // opts := options.Find().SetSkip(1).SetLimit(2).SetSort(bson.D{{Key: "rating", Value: -1}})
+
+		// cursor, err := repo.DB.Find(ctx, filter, opts)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// if err != nil {
+		// 	return nil, float64(len(results)), err
+		// }
+		// return results, float64(len(results)), nil
+		// ---------------------------------------------------------------------
+
+
+		// ---------------------------------------------------------------------
+		// filter := bson.D{{Key: "$limit", Value: 3}}
+		// cursor, err := repo.DB.Aggregate(ctx, mongo.Pipeline{filter})
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// if err != nil {
+		// 	return nil, float64(len(results)), err
+		// }
+		// return results, float64(len(results)), nil
+		// ---------------------------------------------------------------------
 	// ---------------------------------------------------------------------------------------------
 
 
@@ -650,28 +1071,69 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 
 	// SEARCH TEXT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// ---------------------------------------------------------------------------------------------
-		// ------------------------------------------------------------------------
-		// model := mongo.IndexModel{Keys: bson.D{{"name", "text"}}}
+		// ---------------------------------------------------------------------
+		// model := mongo.IndexModel{Keys: bson.D{{Key: "name", Value: "text"}}}
 		// name, err := repo.DB.Indexes().CreateOne(ctx, model)
 		// if err != nil {
 		// 	panic(err)
 		// }
 		// fmt.Println("NAME OF INDEX CREATED :", name)
+		// var results []entity.MerchantResult
+		// count, err := repo.DB.EstimatedDocumentCount(ctx)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
 
 
+		// ---------------------------------------------------------------------
 		// model := mongo.IndexModel{Keys: bson.D{{Key: "address", Value: "text"}}}
 		// name, err := repo.DB.Indexes().CreateOne(ctx, model)
 		// if err != nil {
 		// 	fmt.Println(err)
 		// }
 		// fmt.Println("NAME OF INDEX CREATED :", name)
-		// ------------------------------------------------------------------------
+		// var results []entity.MerchantResult
+		// count, err := repo.DB.EstimatedDocumentCount(ctx)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
+		
 
-		// ------------------------------------------------------------------------
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "$text", Value: bson.D{{Key: "$search", Value: "\"war\""}}}}
+		// cursor, err := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
+		
+		
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "$text", Value: bson.D{{Key: "$search", Value: "city"}}}}
 		// cursor, err := repo.DB.Find(ctx, filter)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
+		
 
+		// ---------------------------------------------------------------------
 		// var result bson.A
 		// cursor.All(ctx, &result)
 		// fmt.Println(result[0])
@@ -687,24 +1149,33 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// fmt.Println(result[1]["_id"])
 		// ------------------------------------------------------------------------
 		
-		// ------------------------------------------------------------------------
+
+		// ---------------------------------------------------------------------
 		// filter := bson.D{{Key: "$text", Value: bson.D{{Key: "$search", Value: "war"}}}}
 		// sort := bson.D{
 		// 	{Key: "score", Value: bson.D{{Key: "$meta", Value: "textScore"}}},
 		// }
 		// projection := bson.D{
+		// 	{Key: "_id", Value: true},
 		// 	{Key: "rating", Value: true}, 
-		// 	{Key: "score", Value: bson.D{{Key: "$meta", Value: "textScore"}}}, 
+		// 	{Key: "name", Value: true}, 
 		// 	{Key: "email", Value: true},
 		// 	{Key: "pic_email", Value: true},
-		// 	{Key: "phone", Value: true},
-		// 	{Key: "_id", Value: true}}
+		// 	{Key: "score", Value: bson.D{{Key: "$meta", Value: "textScore"}}}, 
+		// }
 		// opts := options.Find().SetSort(sort).SetProjection(projection)
 		// cursor, err := repo.DB.Find(ctx, filter, opts)
-		// var result []bson.D
-		// cursor.All(ctx, &result)
-		// fmt.Println(result)
-		// ------------------------------------------------------------------------
+		// // var results []bson.D
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// count, err := repo.DB.CountDocuments(ctx, filter)
+		// val := float64(count)
+		// if err != nil {
+		// 	return nil, val, err
+		// }
+		// return results, val, nil
+		// ---------------------------------------------------------------------
+		
 
 		// ------------------------------------------------------------------------
 		// filter := bson.D{
@@ -715,10 +1186,14 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// 	},
 		// }}}
 		// cursor, err := repo.DB.Aggregate(ctx, mongo.Pipeline{filter})
-		// var result []bson.D
-		// cursor.All(ctx, &result)
-		// fmt.Println(result)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// if err != nil {
+		// 	return nil, float64(len(results)), err
+		// }
+		// return results, float64(len(results)), nil
 		// ------------------------------------------------------------------------
+
 
 		// ------------------------------------------------------------------------
 		// matchStage := bson.D{{Key: "$match", Value: bson.D{{Key: "$text", Value: bson.D{{Key: "$search", Value: "city"}}}}}}
@@ -727,9 +1202,9 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// 	{Key: "$project", Value: bson.D{
 		// 			{Key: "_id", Value: true},
 		// 			{Key: "rating", Value: true}, 
-		// 			{Key: "email", Value: true},
-		// 			{Key: "pic_email", Value: true},
-		// 			{Key: "phone", Value: true},
+		// 			{Key: "name", Value: true}, 
+		// 			{Key: "email", Value: true}, 
+		// 			{Key: "pic_email", Value: true}, 
 		// 			{Key: "score", Value: bson.D{
 		// 					{Key: "$meta", Value: "textScore"},
 		// 				},
@@ -738,9 +1213,12 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, int64, error)
 		// 	},
 		// }
 		// cursor, err := repo.DB.Aggregate(context.TODO(), mongo.Pipeline{matchStage, sortStage, projectStage})
-		// var result []bson.D
-		// cursor.All(ctx, &result)
-		// fmt.Println(result)
+		// var results []entity.MerchantResult
+		// cursor.All(ctx, &results)
+		// if err != nil {
+		// 	return nil, float64(len(results)), err
+		// }
+		// return results, float64(len(results)), nil
 		// ------------------------------------------------------------------------
 
 	// ---------------------------------------------------------------------------------------------

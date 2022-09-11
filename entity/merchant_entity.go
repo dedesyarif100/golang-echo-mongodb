@@ -8,7 +8,7 @@ import (
 // MERCHANT CREATE
 type MerchantCreate struct {
 	ID 				primitive.ObjectID	`json:"id" bson:"_id,omitempty"`
-	Rating			int64					`json:"rating" bson:"rating,omitempty"`
+	Rating			float64					`json:"rating" bson:"rating,omitempty"`
 	Name			string				`json:"name" bson:"name,omitempty" validate:"required"`
 	Logo_Url		string				`json:"logo_url" bson:"logo_url,omitempty" validate:"required"`
 	Address			string				`json:"address" bson:"address,omitempty" validate:"required"`
@@ -61,25 +61,24 @@ type MerchantUpdate struct {
 
 type MerchantResult struct {
 	ID 				primitive.ObjectID	`json:"id" bson:"_id,omitempty"`
-	Rating			int64				`json:"rating" bson:"rating,omitempty"`
+	Rating			float64				`json:"rating" bson:"rating,omitempty"`
 	Name			string				`json:"name" bson:"name,omitempty"`
 	Email			string				`json:"email" bson:"email,omitempty"`
 	Pic_Email		string				`json:"pic_email" bson:"pic_email,omitempty"`
-	Transaction		Transaction			`json:"transaction" bson:"trans"`
-	TransactionHistory	TransactionHistory	`json:"transaction_history" bson:"transaction_history"`
+	// Transaction		Transaction			`json:"transaction" bson:"trans"`
+	// TransactionHistory	TransactionHistory	`json:"transaction_history" bson:"transaction_history"`
 }
 
 type Transaction struct {
-	ID 				primitive.ObjectID	`json:"id" bson:"_id,omitempty"`
+	ID 				primitive.ObjectID	`json:"-" bson:"_id,omitempty"`
 	Name			string				`json:"name" bson:"name,omitempty"`
 	Total			string				`json:"total" bson:"total,omitempty"`
 	TransactionNumber	string				`json:"transaction_number" bson:"transaction_number,omitempty"`
-	// TransactionHistory	TransactionHistory	`json:"transaction_history" bson:"history,omitempty"`
 }
 
 type TransactionHistory struct {
-	ID 				primitive.ObjectID	`json:"id" bson:"_id,omitempty"`
-	Code 			string				`json:"code" bson:"code,omitempty"`
+	ID 				primitive.ObjectID	`json:"-" bson:"_id,omitempty"`
+	Code 			string				`json:"-" bson:"code,omitempty"`
 	CategoryBarang	CategoryBarang		`json:"category_barang" bson:"category_barang,omitempty"`
 }
 
