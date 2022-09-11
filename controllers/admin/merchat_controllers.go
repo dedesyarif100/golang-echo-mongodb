@@ -43,7 +43,7 @@ func (controller *Controller) InsertMerchant(context echo.Context) error {
 
 
 func (controller *Controller) GetAllMerchant(context echo.Context) error {
-	results, err := controller.Service.GetAllMerchant()
+	results, num, err := controller.Service.GetAllMerchant()
 	if err != nil {
 		return context.JSON(http.StatusBadRequest, map[string]any{
 			"code"		: http.StatusBadRequest,
@@ -54,6 +54,7 @@ func (controller *Controller) GetAllMerchant(context echo.Context) error {
 		"code"		: http.StatusOK,
 		"message"	: "success get all merchant",
 		"result"	: results,
+		"result_number": num,
 	})
 }
 
