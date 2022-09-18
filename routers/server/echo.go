@@ -18,6 +18,7 @@ func Server() *echo.Echo {
 	routers.MerchantRoutes(app, conf)
 	routers.AdminRouters(app, conf)
 	routers.HistoryRoutes(app, conf)
+	routers.ScoresRouters(app, conf)
 
 	return app
 }

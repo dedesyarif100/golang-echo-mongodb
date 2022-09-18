@@ -4,14 +4,11 @@ import (
 	"api-merchant-backend/entity"
 	"context"
 	"errors"
-	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
-
 	// "fmt"
 	"time"
-
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -1320,30 +1317,42 @@ func (repo *Repository) GetAllMerchant() ([]entity.MerchantResult, float64, erro
 
 
 		// ------------------------------------------------------------------------
-		matchStage := bson.D{{Key: "$match", Value: bson.D{{Key: "toppings", Value: "milk foam"}}}}
-		unsetStage := bson.D{{Key: "$unset", Value: bson.A{"_id", "category"}}}
-		sortStage := bson.D{{Key: "$sort", Value: bson.D{
-				{Key: "type", Value: 1},
-			},
-		}}
-		limitStage := bson.D{{Key: "$limit", Value: 2}}
+		// matchStage := bson.D{{Key: "$match", Value: bson.D{{Key: "toppings", Value: "milk foam"}}}}
+		// unsetStage := bson.D{{Key: "$unset", Value: bson.A{"_id", "category"}}}
+		// sortStage := bson.D{{Key: "$sort", Value: bson.D{
+		// 		{Key: "type", Value: 1},
+		// 	},
+		// }}
+		// limitStage := bson.D{{Key: "$limit", Value: 2}}
 
-		cursor, err := repo.DBMenu.Aggregate(ctx, mongo.Pipeline{matchStage, unsetStage, sortStage, limitStage})
-		if err != nil {
-			panic(err)
-		}
-		// display the results
-		var r []bson.M
-		if err = cursor.All(context.TODO(), &r); err != nil {
-			panic(err)
-		}
-		for _, result := range r {
-			// fmt.Println("id", result["category"])
-			fmt.Printf("Tea: %v \nToppings: %v \nPrice: $%v \n\n", result["type"], result["toppings"], result["price"])
-		}
-		var results []entity.MerchantResult
-		return results, float64(len(results)), nil
+		// cursor, err := repo.DBMenu.Aggregate(ctx, mongo.Pipeline{matchStage, unsetStage, sortStage, limitStage})
+		// if err != nil {
+		// 	panic(err)
+		// }
+		// // display the results
+		// var r []bson.M
+		// if err = cursor.All(context.TODO(), &r); err != nil {
+		// 	panic(err)
+		// }
+		// for _, result := range r {
+		// 	// fmt.Println("id", result["category"])
+		// 	fmt.Printf("Tea: %v \nToppings: %v \nPrice: $%v \n\n", result["type"], result["toppings"], result["price"])
+		// }
+		// var results []entity.MerchantResult
+		// return results, float64(len(results)), nil
 		// ------------------------------------------------------------------------
+	
+		
+		// ------------------------------------------------------------------------
+		filter := bson.D{{Key: "$limit", Value: 3}}
+		cursor, err := repo.DB.Aggregate(ctx, mongo.Pipeline{filter})
+		var results []entity.MerchantResult
+		cursor.All(ctx, &results)
+		if err != nil {
+			return nil, float64(len(results)), err
+		}
+		return results, float64(len(results)), nil
+		// ------------------------------------------------------------------------	
 	// -------------------------------------------------------------------------------------------------------------------
 
 
