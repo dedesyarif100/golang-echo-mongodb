@@ -65,6 +65,8 @@ type MerchantResult struct {
 	Name			string				`json:"name" bson:"name,omitempty"`
 	Email			string				`json:"email" bson:"email,omitempty"`
 	Pic_Email		string				`json:"pic_email" bson:"pic_email,omitempty"`
+	LogoUrl			string				`json:"logo_url" bson:"logo_url"`
+	Address			string				`json:"address" bson:"address"`
 	// Transaction		Transaction			`json:"transaction" bson:"trans"`
 	// TransactionHistory	TransactionHistory	`json:"transaction_history" bson:"transaction_history"`
 }
